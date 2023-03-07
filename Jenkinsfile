@@ -18,14 +18,13 @@ pipeline {
         stage('Sanity Check and Vulnerability Testing') {
             steps {
                 sh 'snyk container test docker.io/adipurnamk/helm-demo:v1.0'
-                input "Does the staging environment look ok?"
+                // input "Does the staging environment look ok?"
             }
         }
 
         stage('Push to DockerHub') {
             steps {
                 sh """
-                docker login --username ${$DOCKER_USER} --password ${DOCKER_PASS}
                 docker push adipurnamk/helm-demo:v1.0
                 """
             }
