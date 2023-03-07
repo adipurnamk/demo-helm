@@ -7,8 +7,6 @@ pipeline {
             steps { 
                 sh '''
                 uname -a
-                // sudo apt-get update
-                // sudo apt-get install npm docker -y
                 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
                 nvm install node
                 npm -v
