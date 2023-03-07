@@ -7,8 +7,8 @@ pipeline {
             steps { 
                 sh '''
                 uname -a
-                brew install npm
                 npm -v
+                docker -v
                 npm install
                 docker build -t docker.io/adipurnamk/helm-demo:v1.0 .
                 snyk container test docker.io/adipurnamk/helm-demo:v1.0
