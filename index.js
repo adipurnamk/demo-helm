@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
     },
     {
       "id": "2",
-      "title": "This is my Second Blog Title"
+      "title": "This is my 2nd Blog Title"
     },
     {
       "id": "3",
