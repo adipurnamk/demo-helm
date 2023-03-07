@@ -6,6 +6,8 @@ pipeline {
         stage('Installing Dependency, Build and Test using Snyk') {
             steps { 
                 sh '''
+                uname -a
+                brew install npm
                 npm -v
                 npm install
                 docker build -t docker.io/adipurnamk/helm-demo:v1.0 .
