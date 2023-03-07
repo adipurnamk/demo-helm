@@ -7,8 +7,8 @@ pipeline {
             steps { 
                 sh '''
                 uname -a
-                apt-get update
-                apt-get install npm docker -y
+                sudo apt-get update
+                sudo apt-get install npm docker -y
                 npm -v
                 docker -v
                 npm install
