@@ -26,7 +26,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 sh """
-                docker push adipurnamk/helm-demo:v1.0
+                docker push adipurnamk/helm-demo:v1.${BUILD_NUMBER}
                 """
             }
         }
