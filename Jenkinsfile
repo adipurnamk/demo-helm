@@ -24,10 +24,10 @@ pipeline {
 
         stage('Push to DockerHub') {
             steps {
-                sh '''
+                sh """
                 docker login --username ${$DOCKER_USER} --password ${DOCKER_PASS}
                 docker push adipurnamk/helm-demo:v1.0
-                '''
+                """
             }
         }
     }
