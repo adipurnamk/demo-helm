@@ -4,12 +4,13 @@ pipeline {
         /* "Build" and "Test" stages omitted */
 
         stage('Installing Dependency, Build and Test using Snyk') {
-            steps {
-                sh |
-                'npm -v'
-                'npm install'
-                'docker build -t docker.io/adipurnamk/helm-demo:v1.0 .'
-                'snyk container test docker.io/adipurnamk/helm-demo:v1.0'
+            steps { 
+                sh '''
+                npm -v
+                npm install
+                docker build -t docker.io/adipurnamk/helm-demo:v1.0 .
+                snyk container test docker.io/adipurnamk/helm-demo:v1.0
+                '''
             }
         }
 
