@@ -6,8 +6,7 @@ pipeline {
         stage('Installing Dependency, Build Image') {
             steps { 
                 sh '''
-                echo Building version ${BUILD_NUMBER}
-                uname -a
+                echo "Building version ${BUILD_NUMBER}"
                 npm -v
                 docker -v
                 npm install
@@ -16,10 +15,10 @@ pipeline {
             }
         }
 
-        stage('Sanity Check and Vulnerability Testing') {
+        stage('Vulnerability Testing and Sanity Check') {
             steps {
                 sh 'snyk container test docker.io/adipurnamk/helm-demo:v1.${BUILD_NUMBER}'
-                // input "Does the staging environment look ok?"
+                input "Does the image look ok?"
             }
         }
 
