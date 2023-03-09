@@ -35,7 +35,9 @@ pipeline {
                 withCredentials([file(credentialsId: 'sa', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     sh """
                     gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+                    gcloud config set project 'adipurnas projects'
                     gcloud container clusters get-credentials demo-app --zone=asia-souteast1-a
+                    kubectl version
                     kubectl apply -f deployment.yaml
                     kubectl apply -f service.yaml
                     kubectl get svc
