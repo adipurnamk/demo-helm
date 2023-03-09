@@ -37,6 +37,7 @@ pipeline {
                     gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
                     gcloud config set project adipurnas-projects
                     gcloud container clusters get-credentials demo-app --zone=asia-southeast1-a
+                    sed -i "s/image: myimage:TAG/image: adipurnamk/helm-demo:v1.${BUILD_NUMBER}/" deployment.yaml
                     kubectl version
                     kubectl apply -f deployment.yaml
                     kubectl apply -f service.yaml
