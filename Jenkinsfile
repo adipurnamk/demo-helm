@@ -18,7 +18,7 @@ pipeline {
         stage('Vulnerability Testing and Sanity Check') {
             steps {
                 sh 'snyk container test docker.io/adipurnamk/helm-demo:v1.${BUILD_NUMBER}'
-                input "Does the image look ok?"
+                // input "Does the image look ok?"
             }
         }
 
@@ -27,6 +27,20 @@ pipeline {
                 sh """
                 docker push adipurnamk/helm-demo:v1.${BUILD_NUMBER}
                 """
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                withCredentials([file(credentialsId: 'sa', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    sh """
+                    gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+                    gcloud container clusters get-credentials demo-app --zone=asia-souteast1-a
+                    kubectl apply -f deployment.yaml
+                    kubectl apply -f service.yaml
+                    kubectl get svc
+                    """
+                }
             }
         }
     }
