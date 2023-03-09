@@ -49,7 +49,7 @@ pipeline {
     }
     post{
         always{
-            mail to: "${email}",
+            mail to: "${EMAIL}",
             subject: "Jenkins Notification",
             body: "${BUILD_URL}  :: ${BUILD_STATUS}"
         }
