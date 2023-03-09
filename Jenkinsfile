@@ -30,4 +30,11 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            mail to: "${email}",
+            subject: "Jenkins Notification",
+            body: "${BUILD_URL}  :: ${BUILD_STATUS}"
+        }
+    }
 }
