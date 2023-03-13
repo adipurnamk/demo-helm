@@ -1,5 +1,5 @@
 # It will pull node:18-alpine as the base image from Docker Hub
-FROM node:16-alpine
+FROM node:18-alpine
 
 # It creates the container working directory named `node`
 WORKDIR /node
